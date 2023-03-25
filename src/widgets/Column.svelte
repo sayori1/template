@@ -2,7 +2,7 @@
    import type { CrossAxisAlignment, MainAxisAlignment } from "./types/layout";
 
    export let mainAxisAlignment:MainAxisAlignment = 'flex-start';
-   export let crossAxisAlignment:CrossAxisAlignment = 'start';
+   export let crossAxisAlignment:CrossAxisAlignment = 'stretch';
 
     $: style=`display:flex; flex-direction:column; 
     justify-content:${mainAxisAlignment}; 

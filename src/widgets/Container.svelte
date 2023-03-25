@@ -5,8 +5,8 @@
     export let width: Size = "0px";
     export let height: Size = "0px";
     export let color: Color = 'transparent';
-    export let widthExpandable: boolean = true;
-    export let heightExpandable: boolean = true;
+    export let widthExpandable: boolean = false;
+    export let heightExpandable: boolean = false;
     export let padding: EdgeInsets = EdgeInsets.all('0px');
     export let margin: EdgeInsets = EdgeInsets.all('0px');
     export let borderRadius: BorderRadius = BorderRadius.all(0);
@@ -40,6 +40,6 @@
 
 </script>
 
-<div>
+<div style={style}>
     <slot></slot>
 </div>

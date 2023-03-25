@@ -1,6 +1,7 @@
 <script lang="ts">
   import { getContext, onMount } from "svelte";
   import { get } from "svelte/store";
+  import { fade } from "svelte/transition";
   import IndexedStack from "./IndexedStack.svelte";
   import type { IndexedStackContext } from "./indexed_stack_context";
 
@@ -9,7 +10,7 @@
   export let selected = context.selected;
 </script>
 
-<div>
+<div transition:fade>
   {#if index == $selected}
     <slot></slot>
   {:else}
