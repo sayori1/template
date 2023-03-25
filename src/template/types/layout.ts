@@ -15,6 +15,8 @@ export type CrossAxisAlignment =
 
 export type Side = "left" | "right" | "top" | "bottom";
 
+export type PositionType = "relative" | "absolute";
+
 export class EdgeInsets {
   constructor(
     public readonly top: Size = "0px",

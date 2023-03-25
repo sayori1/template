@@ -22,7 +22,7 @@ export class RGBA {
     r: number = 0,
     g: number = 0,
     b: number = 0,
-    a: number = 0
+    a: number = 255
   ): RGBA {
     return new RGBA(r, g, b, a);
   }
