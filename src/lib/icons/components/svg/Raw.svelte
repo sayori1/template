@@ -3,7 +3,7 @@
 </g>
 
 <script lang="ts">
-  import type { IconData } from '$lib/components/Icon.svelte';
+  import type { IconData } from '$lib/icons/components/Icon.svelte';
 
   let cursor = 0xd4937;
   function getId() {

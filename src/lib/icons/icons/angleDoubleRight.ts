@@ -1,13 +1,13 @@
-import type { IconData } from '$lib/components/Icon.svelte';
+import type { IconData } from "$lib/icons/components/Icon.svelte";
 const angleDoubleRight: Record<string, IconData> = {
-  'angle-double-right': {
+  "angle-double-right": {
     width: 1024,
     height: 1792,
     paths: [
       {
-        d: 'M595 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23zM979 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z'
-      }
-    ]
-  }
+        d: "M595 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23zM979 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z",
+      },
+    ],
+  },
 };
 export default angleDoubleRight;
