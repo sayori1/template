@@ -16,7 +16,7 @@ export function setBearerToken(token: string) {
   headers["Authorization"] = "Bearer " + token;
 }
 
-export async function post(url: string, data: object) {
+export async function httpPost(url: string, data: object) {
   beforeRequest(url, data);
   const response = await fetch(baseURL + url, {
     method: "POST",
@@ -30,7 +30,7 @@ export async function post(url: string, data: object) {
   return responseJson;
 }
 
-export async function put(url: string, data: object) {
+export async function httpPut(url: string, data: object) {
   beforeRequest(url, data);
   const response = await fetch(baseURL + url, {
     method: "PUT",
@@ -44,7 +44,7 @@ export async function put(url: string, data: object) {
   return responseJson;
 }
 
-export async function get(url: string) {
+export async function httpGet(url: string) {
   beforeRequest(url, {});
   const response = await fetch(baseURL + url, {
     method: "GET",
@@ -57,7 +57,7 @@ export async function get(url: string) {
   return responseJson;
 }
 
-export async function _delete(url: string) {
+export async function httpDelete(url: string) {
   beforeRequest(url, {});
   const response = await fetch(baseURL + url, {
     method: "DELETE",
