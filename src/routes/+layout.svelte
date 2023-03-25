@@ -2,4 +2,7 @@
     export const ssr = false;
 	import './style.css';
 </script>
-<slot />
+
+<main style="width:70%">
+    <slot />
+</main>

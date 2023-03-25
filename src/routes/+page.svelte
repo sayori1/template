@@ -5,6 +5,8 @@
    let controller = put(new TestController());
 </script>
 
+<h1>This is test of template super framework</h1>
+
 <button on:click={()=>controller = controller.increment()}>
     {controller.value}
 </button>
