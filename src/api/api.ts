@@ -74,14 +74,14 @@ export function imagePath(image: string) {
   return baseURL + "/image/" + image;
 }
 
-async function beforeRequest(url: any, data: any) {
+function beforeRequest(url: any, data: any) {
   console.log(`REQUEST ${url} with data: ${JSON.stringify(data)}`);
   if (localStorage.getItem("token") != null) {
     setBearerToken(localStorage.getItem("token")!);
   }
 }
 
-async function middleware(responseJson: any) {
+function middleware(responseJson: any) {
   console.log(`RESPONSE: ${JSON.stringify(responseJson)}`);
   if (responseJson["error"] != null || responseJson.statusCode != null) {
     if (responseJson.statusCode == 1000) {
