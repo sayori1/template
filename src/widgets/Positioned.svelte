@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PositionType } from "../types/layout";
+  import type { PositionType } from "./types/layout";
 
 
     export let left: Size|undefined = undefined;

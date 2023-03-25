@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { DragType } from "../types/events";
+  import type { DragType } from "./types/events";
 
     export let onClick:(arg0: MouseEvent)=>void = ()=>{};
     export let onDoubleClick:(arg0: MouseEvent)=>void = ()=>{};

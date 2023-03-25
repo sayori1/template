@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { getCSSColor, type Color } from "../types/color";
-  import { BorderRadius, EdgeInsets } from "../types/layout";
+  import { getCSSColor, type Color } from "./types/color";
+  import { BorderRadius, EdgeInsets } from "./types/layout";
 
     export let width: Size = "0px";
     export let height: Size = "0px";

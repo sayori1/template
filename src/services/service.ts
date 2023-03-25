@@ -2,7 +2,7 @@ import { get, writable, type Writable } from "svelte/store";
 
 export let debug: boolean = true;
 
-export class Controller {
+export class Service {
   type: string;
   isBusy: boolean = false;
 
@@ -39,26 +39,26 @@ export class Controller {
   protected onRefresh() {}
 }
 
-let controllers: Writable<Controller[]> = writable([]);
+let services: Writable<Service[]> = writable([]);
 
-export function put<T extends Controller>(controller: T) {
-  let existingController = get(controllers).find(
-    (item) => item.constructor.name == controller.constructor.name
+export function put<T extends Service>(service: T) {
+  let existingController = get(services).find(
+    (item) => item.constructor.name == service.constructor.name
   ) as T | undefined;
 
   if (existingController != null && existingController.unique) {
     return existingController;
   }
 
-  controller.init();
-  controllers.update((_) => [..._, controller]);
-  return controller;
+  service.init();
+  services.update((_) => [..._, service]);
+  return service;
 }
 
-export function find<T extends Controller>(targetType: {
+export function find<T extends Service>(serviceType: {
   new (): T;
 }): T | undefined {
-  return get(controllers).find(
-    (controller) => controller instanceof targetType
-  ) as T | undefined;
+  return get(services).find((service) => service instanceof serviceType) as
+    | T
+    | undefined;
 }
