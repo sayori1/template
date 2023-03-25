@@ -1,5 +1,7 @@
-<script>
-  import Container from '../template/widgets/Container.svelte';
-</script>
+<script lang="ts">
+  import { put } from "../template/core/controller";
+  import { TestController } from "./controller";
 
-<Container width="100px" height="100px" color="red"></Container>
+   let controller = put(new TestController);
+</script>
+  
