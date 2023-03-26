@@ -2,6 +2,7 @@
   import Row from '$lib/widgets/Row.svelte';
   import SizedBox from '$lib/widgets/SizedBox.svelte';
 	import { onMount } from 'svelte';
+  import { Routing } from '../../middlewares';
 	let mounted = false;
 	onMount(() => {
 		mounted = true;
@@ -13,8 +14,8 @@
 		<SizedBox width="1vw" />
 		<h2 style="margin: 10px; font-size: 3vh">academy</h2>
 		<SizedBox width="4vw" />
-		<a href="/explore">обзор</a>
-		<a href="/profile">профиль</a>
+		<a on:click={()=>Routing.goTo('/explore')}>обзор</a>
+		<a on:click={()=>Routing.goTo('/profile')}>профиль</a>
 	</Row>
 </div>
 

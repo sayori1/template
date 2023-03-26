@@ -2,7 +2,7 @@ import { get, writable, type Writable } from "svelte/store";
 
 export let debug: boolean = true;
 
-export class Service {
+export abstract class Service {
   type: string;
   isBusy: boolean = false;
 
@@ -12,36 +12,46 @@ export class Service {
 
   init() {
     if (debug) console.log(this.constructor.name + " CREATED");
-    this.onInit();
+    if (this.onInit) this.onInit();
   }
 
   dispose() {
     if (debug) console.log(this.constructor.name + " DISPOSED");
-    this.onDispose();
+    if (this.onDispose) this.onDispose();
   }
 
   mount() {
     if (debug) console.log(this.constructor.name + " VIEW MOUNTED");
-    this.onMount();
+    if (this.onMount) this.onMount();
   }
 
   refresh() {
     if (debug) console.log(this.constructor.name + " REFRESHED");
-    this.onRefresh();
+    if (this.onRefresh) this.onRefresh();
   }
 
-  protected onInit() {}
+  abstract onInit?: () => void;
 
-  protected onDispose() {}
+  abstract onDispose?: () => void;
 
-  protected onMount() {}
+  abstract onMount?: () => void;
 
-  protected onRefresh() {}
+  abstract onRefresh?: () => void;
+
+  abstract canGo?: (path: string) => boolean;
+
+  abstract beforeGo?: (path: string) => void;
+
+  abstract afterGo?: (path: string) => void;
 }
 
-let services: Writable<Service[]> = writable([]);
+export let services: Writable<Service[]> = writable([]);
 
-export function put<T extends Service>(service: T) {
+export function getAllServices(): Service[] {
+  return get(services);
+}
+
+export function putService<T extends Service>(service: T) {
   let existingController = get(services).find(
     (item) => item.constructor.name == service.constructor.name
   ) as T | undefined;
@@ -55,7 +65,7 @@ export function put<T extends Service>(service: T) {
   return service;
 }
 
-export function find<T extends Service>(serviceType: {
+export function findService<T extends Service>(serviceType: {
   new (): T;
 }): T | undefined {
   return get(services).find((service) => service instanceof serviceType) as

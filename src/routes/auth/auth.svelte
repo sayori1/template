@@ -1,8 +1,10 @@
 <script>
-  import Column from "../../widgets/Column.svelte";
-  import Container from "../../widgets/Container.svelte";
-  import SizedBox from "../../widgets/SizedBox.svelte";
-  import Spacer from "../../widgets/Spacer.svelte";
+  import Column from "$lib/widgets/Column.svelte";
+  import Container from "$lib/widgets/Container.svelte";
+  import SizedBox from "$lib/widgets/SizedBox.svelte";
+  import Spacer from "$lib/widgets/Spacer.svelte";
+
+
 
   let email = '';
   let password = '';
