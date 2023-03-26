@@ -27,6 +27,7 @@
 
 <button on:click={()=>showModal('auth')}>authorize</button>
 
+
 <Modal key="auth">
   <Auth></Auth>
 </Modal>
