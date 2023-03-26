@@ -1,26 +1,31 @@
 <script>
+  import Row from '$lib/widgets/Row.svelte';
+  import SizedBox from '$lib/widgets/SizedBox.svelte';
 	import { onMount } from 'svelte';
-  import Row from '../../widgets/Row.svelte';
-  import SizedBox from '../../widgets/SizedBox.svelte';
 	let mounted = false;
 	onMount(() => {
 		mounted = true;
 	});
 </script>
 
-<div
-	style="background-color:#fbfbfa; position: fixed; top:0px; width: 100%; border-bottom: 1px solid #f5f5f4;"
->
+<div class="navbar">
 	<Row crossAxisAlignment="center">
 		<SizedBox width="1vw" />
 		<h2 style="margin: 10px; font-size: 3vh">academy</h2>
 		<SizedBox width="4vw" />
-		<a href="/journal">обзор</a>
-		<a href="/me">профиль</a>
+		<a href="/explore">обзор</a>
+		<a href="/profile">профиль</a>
 	</Row>
 </div>
 
 <style>
+	.navbar{
+		background-color:#fbfbfa; 
+		position: fixed; 
+		top:0px; 
+		width: 100%; 
+		border-bottom: 1px solid #f5f5f4;
+	}
 	a {
 		cursor: pointer;
 		margin-right: 3%;

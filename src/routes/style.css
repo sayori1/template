@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'Montserrat';
-	src: url('/src/fonts/Montserrat-Medium.woff') format('woff');
+	src: url('/src/lib/fonts/Montserrat-Medium.woff') format('woff');
 }
 
 body {

@@ -1,4 +1,4 @@
-export const baseURL = "http://localhost:4000/";
+import { baseURL } from "../env";
 
 export let bearerToken: string | null = null;
 let headers = {
@@ -26,7 +26,7 @@ export async function httpPost(url: string, data: object) {
     throw e;
   });
   var responseJson = await response.json();
-  middleware(responseJson);
+  afterRequest(responseJson);
   return responseJson;
 }
 
@@ -40,7 +40,7 @@ export async function httpPut(url: string, data: object) {
     throw e;
   });
   var responseJson = await response.json();
-  middleware(responseJson);
+  afterRequest(responseJson);
   return responseJson;
 }
 
@@ -53,7 +53,7 @@ export async function httpGet(url: string) {
     throw e;
   });
   const responseJson = await response.json();
-  middleware(responseJson);
+  afterRequest(responseJson);
   return responseJson;
 }
 
@@ -66,7 +66,7 @@ export async function httpDelete(url: string) {
     throw e;
   });
   const responseJson = await response.json();
-  middleware(responseJson);
+  afterRequest(responseJson);
   return responseJson;
 }
 
@@ -81,7 +81,7 @@ function beforeRequest(url: any, data: any) {
   }
 }
 
-function middleware(responseJson: any) {
+function afterRequest(responseJson: any) {
   console.log(`RESPONSE: ${JSON.stringify(responseJson)}`);
   if (responseJson["error"] != null || responseJson.statusCode != null) {
     if (responseJson.statusCode == 1000) {
