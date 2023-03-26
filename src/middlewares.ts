@@ -1,4 +1,5 @@
 import { goto } from "$app/navigation";
+import { setBearerToken } from "./api/api";
 import { getAllServices } from "./services/service";
 
 export class App {
@@ -30,4 +31,30 @@ export class Routing {
   }
 }
 
-export class Network {}
+export class Network {
+  static beforeRequest(url: any, data: any) {
+    console.log("REQUEST: " + url + " width data: " + data);
+    if (localStorage.getItem("token") != null) {
+      setBearerToken(localStorage.getItem("token")!);
+    }
+  }
+
+  static afterRequest(responseJson: any) {
+    console.log("RESPONSE: " + responseJson);
+    if (responseJson["error"] != null || responseJson.statusCode != null) {
+      if (responseJson.statusCode == 1000) {
+      }
+      if (responseJson.statusCode == 2000) {
+      }
+      if (responseJson.statusCode == 1001) {
+      }
+      if (responseJson.statusCode == 500) {
+      }
+      throw responseJson;
+    }
+  }
+
+  static onError(error: any) {
+    console.log("ERROR: " + error);
+  }
+}

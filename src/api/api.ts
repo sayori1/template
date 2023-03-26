@@ -1,4 +1,5 @@
 import { baseURL } from "../env";
+import { Network } from "../middlewares";
 
 export let bearerToken: string | null = null;
 let headers = {
@@ -17,7 +18,7 @@ export function setBearerToken(token: string) {
 }
 
 export async function httpPost(url: string, data: object) {
-  beforeRequest(url, data);
+  Network.beforeRequest(url, data);
   const response = await fetch(baseURL + url, {
     method: "POST",
     headers: headers,
@@ -25,13 +26,13 @@ export async function httpPost(url: string, data: object) {
   }).catch((e) => {
     throw e;
   });
-  var responseJson = await response.json();
-  afterRequest(responseJson);
+  const responseJson = await response.json();
+  Network.afterRequest(responseJson);
   return responseJson;
 }
 
 export async function httpPut(url: string, data: object) {
-  beforeRequest(url, data);
+  Network.beforeRequest(url, data);
   const response = await fetch(baseURL + url, {
     method: "PUT",
     headers: headers,
@@ -39,13 +40,13 @@ export async function httpPut(url: string, data: object) {
   }).catch((e) => {
     throw e;
   });
-  var responseJson = await response.json();
-  afterRequest(responseJson);
+  const responseJson = await response.json();
+  Network.afterRequest(responseJson);
   return responseJson;
 }
 
 export async function httpGet(url: string) {
-  beforeRequest(url, {});
+  Network.beforeRequest(url, {});
   const response = await fetch(baseURL + url, {
     method: "GET",
     headers: headers,
@@ -53,12 +54,12 @@ export async function httpGet(url: string) {
     throw e;
   });
   const responseJson = await response.json();
-  afterRequest(responseJson);
+  Network.afterRequest(responseJson);
   return responseJson;
 }
 
 export async function httpDelete(url: string) {
-  beforeRequest(url, {});
+  Network.beforeRequest(url, {});
   const response = await fetch(baseURL + url, {
     method: "DELETE",
     headers: headers,
@@ -66,32 +67,10 @@ export async function httpDelete(url: string) {
     throw e;
   });
   const responseJson = await response.json();
-  afterRequest(responseJson);
+  Network.afterRequest(responseJson);
   return responseJson;
 }
 
 export function imagePath(image: string) {
   return baseURL + "/image/" + image;
-}
-
-function beforeRequest(url: any, data: any) {
-  console.log(`REQUEST ${url} with data: ${JSON.stringify(data)}`);
-  if (localStorage.getItem("token") != null) {
-    setBearerToken(localStorage.getItem("token")!);
-  }
-}
-
-function afterRequest(responseJson: any) {
-  console.log(`RESPONSE: ${JSON.stringify(responseJson)}`);
-  if (responseJson["error"] != null || responseJson.statusCode != null) {
-    if (responseJson.statusCode == 1000) {
-    }
-    if (responseJson.statusCode == 2000) {
-    }
-    if (responseJson.statusCode == 1001) {
-    }
-    if (responseJson.statusCode == 500) {
-    }
-    throw responseJson;
-  }
 }
