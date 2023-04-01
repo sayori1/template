@@ -1,9 +1,12 @@
 import { goto } from "$app/navigation";
 import { setBearerToken } from "./api/api";
-import { getAllServices } from "./services/service";
+import { AuthService } from "./services/auth_service";
+import { getAllServices, putService } from "./services/service";
 
 export class App {
-  static onInit() {}
+  static onInit() {
+    putService(new AuthService());
+  }
 }
 
 export class Routing {
@@ -32,13 +35,14 @@ export class Routing {
 }
 
 export class Network {
-  static beforeRequest(url: any, data: any) {
-    console.log("REQUEST: " + url + " width data: " + data);
-    if (localStorage.getItem("token") != null) {
-      setBearerToken(localStorage.getItem("token")!);
-    }
+  static beforeRequest(url: string, data: object) {
+    let services = getAllServices();
+    services.forEach(
+      (service) => service.beforeRequest && service.beforeRequest(url, data)
+    );
   }
 
+  //to do: all errors pass to onError
   static afterRequest(responseJson: any) {
     console.log("RESPONSE: " + responseJson);
     if (responseJson["error"] != null || responseJson.statusCode != null) {
@@ -52,9 +56,15 @@ export class Network {
       }
       throw responseJson;
     }
+    let services = getAllServices();
+    services.forEach(
+      (service) => service.afterRequest && service.afterRequest(responseJson)
+    );
   }
 
   static onError(error: any) {
     console.log("ERROR: " + error);
+    let services = getAllServices();
+    services.forEach((service) => service.onError && service.onError(error));
   }
 }

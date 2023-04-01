@@ -1,18 +1,10 @@
 import { baseURL } from "../env";
 import { Network } from "../middlewares";
+import { headers } from "./headers";
 
 export let bearerToken: string | null = null;
-let headers = {
-  "Content-Type": "application/json;charset=utf-8",
-  Accept: "application/json",
-  mode: "cors",
-  headers: {
-    "Content-Type": "application/json",
-  },
-} as any;
 
 export function setBearerToken(token: string) {
-  if (token == null) return;
   bearerToken = token;
   headers["Authorization"] = "Bearer " + token;
 }
@@ -24,6 +16,7 @@ export async function httpPost(url: string, data: object) {
     headers: headers,
     body: JSON.stringify(data),
   }).catch((e) => {
+    Network.onError(e);
     throw e;
   });
   const responseJson = await response.json();
@@ -38,6 +31,7 @@ export async function httpPut(url: string, data: object) {
     headers: headers,
     body: JSON.stringify(data),
   }).catch((e) => {
+    Network.onError(e);
     throw e;
   });
   const responseJson = await response.json();
@@ -51,6 +45,7 @@ export async function httpGet(url: string) {
     method: "GET",
     headers: headers,
   }).catch((e) => {
+    Network.onError(e);
     throw e;
   });
   const responseJson = await response.json();
@@ -64,6 +59,7 @@ export async function httpDelete(url: string) {
     method: "DELETE",
     headers: headers,
   }).catch((e) => {
+    Network.onError(e);
     throw e;
   });
   const responseJson = await response.json();

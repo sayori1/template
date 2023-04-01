@@ -30,19 +30,27 @@ export abstract class Service {
     if (this.onRefresh) this.onRefresh();
   }
 
-  abstract onInit?: () => void;
+  onInit(): void {}
 
-  abstract onDispose?: () => void;
+  onDispose(): void {}
 
-  abstract onMount?: () => void;
+  onMount(): void {}
 
-  abstract onRefresh?: () => void;
+  onRefresh(): void {}
 
-  abstract canGo?: (path: string) => boolean;
+  canGo(path: string): boolean {
+    return true;
+  }
 
-  abstract beforeGo?: (path: string) => void;
+  beforeGo(path: string): void {}
 
-  abstract afterGo?: (path: string) => void;
+  afterGo(path: string): void {}
+
+  beforeRequest(url: string, data: object): void {}
+
+  afterRequest(responseJson: any): void {}
+
+  onError(error: any): void {}
 }
 
 export let services: Writable<Service[]> = writable([]);
