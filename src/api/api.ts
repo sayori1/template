@@ -1,8 +1,13 @@
 import { baseURL } from "../env";
 import { Network } from "../middlewares";
-import { headers } from "./headers";
 
 export let bearerToken: string | null = null;
+
+export let headers: Record<string, string> = {
+  "Content-Type": "application/json;charset=utf-8",
+  Accept: "application/json",
+  mode: "cors",
+};
 
 export function setBearerToken(token: string) {
   bearerToken = token;
@@ -67,6 +72,6 @@ export async function httpDelete(url: string) {
   return responseJson;
 }
 
-export function imagePath(image: string) {
+export function networkImagePath(image: string) {
   return baseURL + "/image/" + image;
 }
