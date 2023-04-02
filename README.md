@@ -38,3 +38,7 @@ npm run build
 npx cap sync
 npx cap build android(ios)
 ```
+
+## Useful links:
+
+https://svelte-pixi.com/docs/getting-started/introduction - svelte pixi for drawing instead bear Canvas
